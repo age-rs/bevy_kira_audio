@@ -1,6 +1,6 @@
 (
-    // The actual sound file in your assets directory
-    file: "sounds/loop.ogg",
+    // The actual sound asset in your assets directory
+    asset: "sounds/loop.ogg",
 
     // Start sound at 2 seconds
     start_position: 2.,

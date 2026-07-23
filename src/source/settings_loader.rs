@@ -1,12 +1,12 @@
 use bevy::asset::io::Reader;
-use bevy::asset::{AssetLoader, LoadContext, ReadAssetBytesError};
+use bevy::asset::{AssetLoader, AssetPath, LoadContext, ReadAssetBytesError};
 use bevy::reflect::TypePath;
 use kira::sound::static_sound::{StaticSoundData, StaticSoundSettings};
 use kira::sound::{FromFileError, PlaybackPosition, Region};
 use kira::{PlaybackRate, Tween};
 use serde::Deserialize;
 use std::time::Duration;
-use std::{io::Cursor, path::PathBuf};
+use std::{io::Cursor};
 use thiserror::Error;
 
 use crate::AudioSource;
@@ -22,8 +22,8 @@ pub struct SettingsLoader;
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 struct SoundSettings {
-    /// Location of the sound file.
-    file: PathBuf,
+    /// Asset path of the sound file.
+    asset: AssetPath<'static>,
 
     /// The second from which the sound should be started.
     #[serde(default)]
@@ -119,7 +119,7 @@ impl AssetLoader for SettingsLoader {
         reader.read_to_end(&mut bytes).await?;
         let sound_settings: SoundSettings = ron::de::from_bytes(&bytes)?;
         let sound_bytes = load_context
-            .read_asset_bytes(sound_settings.file.clone())
+            .read_asset_bytes(sound_settings.asset.clone())
             .await?;
 
         let mut sound = StaticSoundData::from_cursor(Cursor::new(sound_bytes))?;
