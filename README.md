@@ -65,8 +65,8 @@ Optionally, you can also load a sound with already applied settings. This requir
 Sounds are configured in `ron` files. The following file loads as a `AudioSource` which is looped and has a 3 seconds intro before the loop:
 ```ron
 (
-    // The actual sound file in your assets directory
-    file: "sounds/loop.ogg",
+    // The actual sound asset in your assets directory
+    asset: "sounds/loop.ogg",
 
     loop_behavior: Some(3.0),
 )
