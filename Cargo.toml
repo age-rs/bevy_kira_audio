@@ -37,26 +37,7 @@ glam = "0.25.0"
 [dev-dependencies.bevy]
 version = "0.19.0"
 default-features = false
-# default features minus "bevy_audio", "android_shared_stdcxx", and "vorbis"
-features = [
-"default_app",
-"2d_api",
-"2d_bevy_render",
-"3d_api",
-"3d_bevy_render",
-"ui_api",
-"ui_bevy_render",
-"scene",
-"picking",
-"bevy_gilrs",
-"bevy_winit",
-"default_font",
-"multi_threaded",
-"webgl2",
-"x11",
-"wayland",
-"sysinfo_plugin",
-]
+features = ["2d", "3d", "ui"]
 
 [[example]]
 name = "basic"
