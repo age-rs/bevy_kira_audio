@@ -5,8 +5,8 @@ use kira::sound::static_sound::{StaticSoundData, StaticSoundSettings};
 use kira::sound::{FromFileError, PlaybackPosition, Region};
 use kira::{PlaybackRate, Tween};
 use serde::Deserialize;
+use std::io::Cursor;
 use std::time::Duration;
-use std::{io::Cursor};
 use thiserror::Error;
 
 use crate::AudioSource;
