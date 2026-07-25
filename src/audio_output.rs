@@ -363,7 +363,7 @@ impl<B: Backend> AudioOutput<B> {
     }
 
     pub(crate) fn cleanup_stopped_instances(&mut self, instances: &mut Assets<AudioInstance>) {
-        for (_, handles) in self.instances.iter_mut() {
+        for handles in self.instances.values_mut() {
             handles.retain(|handle| {
                 if let Some(instance) = instances.get(handle) {
                     instance.handle.state() != kira::sound::PlaybackState::Stopped
